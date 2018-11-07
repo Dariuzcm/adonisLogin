@@ -1,9 +1,10 @@
 'use strict'
 
 const {validateAll} = use('Validator')
-const User = use('App/Models/User')
-const randomString = require('random-string')
-const Mail = use('Mail')
+const Database = use('Database')
+
+await Database.collection('user').find()
+await Database.collection('user').paginate()
 
 class RegisterController {
     showRegisterForm({view}){
@@ -24,18 +25,19 @@ class RegisterController {
             return response.redirect('back')
         }
         //create user
-        const user = await User.create({
-            username: request.input('username'),
-            email: request.input('email'),
-            password: request.input('pass'),
-            confirmation_token: randomString({length:40})
-        })
-        await user.save()
+        db.collection.insert(
+           "user",
+            {
+              username: user.username,
+              email: user.email,
+              pass: user.pass
+            }
+         )
         //display success message
         session.flash({
             notification: {
                 type: 'success',
-                message: 'Your email address has been confirmed.'
+                message: 'Your account has been creater.'
             }
         })
 

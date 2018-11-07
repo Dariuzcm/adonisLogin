@@ -17,6 +17,10 @@ module.exports = {
   |
   */
   connection: Env.get('DB_CONNECTION', 'mongodb'),
+  /**
+   * Configuracion de base de datos MONGODB
+   * ------------------------------------------------------------------------
+   */
   mongodb: {
     client: 'mongodb',
     connectionString: Env.get('DB_CONNECTION_STRING', ''),
