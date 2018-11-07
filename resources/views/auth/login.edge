@@ -1,8 +1,13 @@
 @layout('layout')
 @section('content')
 <h1>Login</h1>
-
-<form method="POST">
+ @if(old('notification'))
+<div class="alert alert-{{old('notification.type')}}">
+        {{old('notification.message')}}
+    </div>   
+ @endif
+<form action="/login"method="POST">
+        {{ csrfField() }}
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -13,7 +18,8 @@
       <input type="password" name="pass" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a href="/register" class="badge badge-primary">Do you have not an account? Click here!</a>
+
+    <center><a href="/register" class="badge badge-primary">Do not you have a account? Click here!</a></center>
 
 </form>
 @endsection

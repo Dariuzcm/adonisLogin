@@ -1,0 +1,8 @@
+@layout('layout')
+
+@section('content')
+    <h1>Bienvenido al Sistema</h1>
+  
+   <button name="button" action="{{()=>{ await auth.logout()
+        response.redirect('/')}}}"">Loguot</button></a>
+@endsection

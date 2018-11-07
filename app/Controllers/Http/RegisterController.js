@@ -1,10 +1,6 @@
 'use strict'
 
-const {validateAll} = use('Validator')
-const Database = use('Database')
-
-await Database.collection('user').find()
-await Database.collection('user').paginate()
+const User = use('App/Models/User')
 
 class RegisterController {
     showRegisterForm({view}){
@@ -12,36 +8,35 @@ class RegisterController {
     }
 
     async register({request, session, response}){
-        //validate form inputs
-        const validation = await validateAll(request.all(), {
-            username: 'required|unique:users, username',
-            email: 'required|email|unique:users, email',
-            password: 'required'
-        })
-
-        if(validation.fails()){
-            session.withErrors(validation.messages()).flashExcept(['password'])
-
-            return response.redirect('back')
-        }
+       
         //create user
-        db.collection.insert(
-           "user",
-            {
-              username: user.username,
-              email: user.email,
-              pass: user.pass
-            }
-         )
-        //display success message
-        session.flash({
+        const user = await User.create({
+            username: request.input('username'),
+            email: request.input('email'),
+            password: request.input('password'),
+        })
+        user.is_active = true
+        try {
+            
+        user.save()   
+         //display success message
+         session.flash({
             notification: {
                 type: 'success',
-                message: 'Your account has been creater.'
+                message: 'Registration successful!.'
             }
         })
+        } catch (error) {
+            session.flash({
+                notification: {
+                    type: 'danger',
+                    message: 'Registration Incompleted. Something wrong happends'
+                }
+            })
+        }
+       
 
-        return response.redirect('back')
+        return response.redirect('/login')
     }
 }
 

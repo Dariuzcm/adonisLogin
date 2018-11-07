@@ -20,7 +20,12 @@ Route.on('/').render('welcome')
 Route.get('login', ({ view }) => {
     return view.render("auth/login")
 })
-Route.post('login','UserController.login()')
+Route.post('login','UserController.login')
 Route.get('register',({view})=>{
     return view.render('auth/register')
 })
+Route.post('register','RegisterController.register')
+Route.get('home',({view})=>{
+    return view.render('home')
+})
+Route.post('logout','UserController.logout')
