@@ -16,7 +16,7 @@ module.exports = {
   | Available Serializers - lucid, database
   |
   */
-  authenticator: 'session',
+  authenticator: 'basic',
 
   /*
   |--------------------------------------------------------------------------
@@ -94,5 +94,5 @@ module.exports = {
     uid: 'username',
     password: '',
     expiry: '30d',
-  }
+  },
 }

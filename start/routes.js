@@ -17,3 +17,10 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+Route.get('login', ({ view }) => {
+    return view.render("auth/login")
+})
+Route.post('login','UserController.login()')
+Route.get('register',({view})=>{
+    return view.render('auth/register')
+})
