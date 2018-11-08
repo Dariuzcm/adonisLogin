@@ -25,7 +25,5 @@ Route.get('register',({view})=>{
     return view.render('auth/register')
 })
 Route.post('register','RegisterController.register')
-Route.get('home',({view})=>{
-    return view.render('home')
-})
+Route.get('home','UserController.gohome')
 Route.post('logout','UserController.logout')

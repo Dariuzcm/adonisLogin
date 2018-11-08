@@ -2,7 +2,8 @@
 
 @section('content')
     <h1>Bienvenido al Sistema</h1>
-  
-   <button name="button" action="{{()=>{ await auth.logout()
-        response.redirect('/')}}}"">Loguot</button></a>
+  <form action="/logout" class="form" method="POST">
+        {{ csrfField() }}
+   <button type="submit"  class="btn btn-primary-danger">Loguot</button></a>
+</form>
 @endsection

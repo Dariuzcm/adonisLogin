@@ -15,7 +15,6 @@ class RegisterController {
             email: request.input('email'),
             password: request.input('password'),
         })
-        user.is_active = true
         try {
             
         user.save()   
